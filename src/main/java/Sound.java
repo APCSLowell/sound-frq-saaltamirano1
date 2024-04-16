@@ -17,9 +17,14 @@ public class Sound
   {  
     int numChanges = 0;
     for(int i = 0; i<samples.length; i++){
-      samples[i] = 0 - limit; 
-      numChanges = numChanges + 1;
-    }
+      if(samples[i] > limit){
+        samples[i] = limit;
+        numChanges = numChanges + 1;
+      }
+      else if(samples[i] < 0 - limit){
+        samples[i] = 0 - limit;
+        numChanges = numChanges + 1;
+      }
     }
     return numChanges; 
   }
@@ -36,7 +41,7 @@ public class Sound
     int numZeros = 0; 
     int n = 0;
     while(samples[n] == 0){
-      numZeros = numZeros+1; 
+      numZeros = numZeros + 1; 
       n++;
     }
     int [] noZeros = new int[samples.length-numZeros];
